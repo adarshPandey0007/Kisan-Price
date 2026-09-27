@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { api } from "../api";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Contact() {
+  const { t } = useLanguage();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState("");
@@ -27,19 +29,19 @@ export default function Contact() {
   return (
     <div className="contact-page">
       <div className="contact-info">
-        <h1>Talk to the Kisan Price team</h1>
-        <p>Questions about listing your harvest, verifying a certificate, or partnering as a mandi — write to us.</p>
+        <h1>{t("contact.title")}</h1>
+        <p>{t("contact.subtitle")}</p>
         <ul>
           <li>
-            <strong>Support</strong>
+            <strong>{t("contact.support")}</strong>
             <span>support@kisanprice.in</span>
           </li>
           <li>
-            <strong>Phone</strong>
-            <span>+91 8588921856</span>
+            <strong>{t("contact.phone")}</strong>
+            <span>+91 80000 12345</span>
           </li>
           <li>
-            <strong>Office</strong>
+            <strong>{t("contact.office")}</strong>
             <span>Sector 12, Kanpur, Uttar Pradesh</span>
           </li>
         </ul>
@@ -47,23 +49,23 @@ export default function Contact() {
 
       <form onSubmit={handleSubmit} className="contact-form">
         <label>
-          Name
+          {t("contact.name")}
           <input required value={form.name} onChange={(e) => update("name", e.target.value)} />
         </label>
         <label>
-          Email
+          {t("contact.email")}
           <input required type="email" value={form.email} onChange={(e) => update("email", e.target.value)} />
         </label>
         <label>
-          Message
+          {t("contact.message")}
           <textarea required rows={5} value={form.message} onChange={(e) => update("message", e.target.value)} />
         </label>
 
         {error && <p className="form__hint form__hint--error">{error}</p>}
-        {status === "sent" && <p className="form__hint form__hint--ok">Message sent — we'll get back to you soon.</p>}
+        {status === "sent" && <p className="form__hint form__hint--ok">{t("contact.sent")}</p>}
 
         <button className="btn btn--primary" type="submit" disabled={status === "sending"}>
-          {status === "sending" ? "Sending…" : "Send message"}
+          {status === "sending" ? t("contact.sending") : t("contact.send")}
         </button>
       </form>
     </div>

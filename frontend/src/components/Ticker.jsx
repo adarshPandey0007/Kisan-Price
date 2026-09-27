@@ -1,8 +1,8 @@
 const FALLBACK = [
   { cropName: "Basmati Rice", quality: "Premium", price: 62, unit: "kg", region: "Kanpur, UP" },
-  { cropName: "Turmeric", quality: "Grade A", price: 145, unit: "kg", region: "Warangal, TS" },
-  { cropName: "Ginger", quality: "Grade A", price: 55, unit: "kg", region: "Shillong, ML" },
   { cropName: "Wheat", quality: "Standard", price: 24, unit: "kg", region: "Meerut, UP" },
+  { cropName: "Maize", quality: "Grade A", price: 21, unit: "kg", region: "Nagpur, MH" },
+  { cropName: "Bajra (Pearl Millet)", quality: "Grade B", price: 23, unit: "kg", region: "Jaipur, RJ" },
 ];
 
 export default function Ticker({ items }) {

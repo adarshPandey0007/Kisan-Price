@@ -7,14 +7,14 @@ const db = readDb();
 
 const demoFarmers = [
   { name: "Ramesh Yadav", email: "ramesh@demo.in", region: "Kanpur, Uttar Pradesh", phone: "+91 98765 43210" },
-  { name: "Lakshmi Devi", email: "lakshmi@demo.in", region: "Warangal, Telangana", phone: "+91 91234 56780" },
-  { name: "Tenzin Norgay", email: "tenzin@demo.in", region: "Shillong, Meghalaya", phone: "+91 90000 11223" },
+  { name: "Suresh Patil", email: "suresh@demo.in", region: "Nagpur, Maharashtra", phone: "+91 91234 56780" },
+  { name: "Gurpreet Singh", email: "gurpreet@demo.in", region: "Ludhiana, Punjab", phone: "+91 90000 11223" },
 ];
 
 const demoPosts = [
   { cropName: "Basmati Rice", quality: "Premium", price: 62, unit: "kg", description: "Long-grain basmati, aged 12 months, low moisture, sun-dried on raised beds." },
-  { cropName: "Turmeric (Haldi)", quality: "Grade A", price: 145, unit: "kg", description: "High-curcumin turmeric, hand-polished, lab-tested for purity." },
-  { cropName: "Ginger", quality: "Grade A", price: 55, unit: "kg", description: "Fresh hill ginger from terraced farms, harvested this week." },
+  { cropName: "Wheat", quality: "Grade A", price: 25, unit: "kg", description: "Sharbati wheat, cleaned and graded, harvested this season." },
+  { cropName: "Maize", quality: "Grade A", price: 21, unit: "kg", description: "Yellow maize, sun-dried, low moisture, tested for aflatoxin." },
 ];
 
 async function seed() {

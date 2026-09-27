@@ -1,7 +1,9 @@
 import { ASSET_BASE } from "../api";
+import { useLanguage } from "../context/LanguageContext";
 import StarRating from "./StarRating";
 
 export default function PostCard({ post, onOpen }) {
+  const { t } = useLanguage();
   const cover = post.imageUrls?.[0];
   const rating = post.farmerRating?.average;
 
@@ -14,7 +16,7 @@ export default function PostCard({ post, onOpen }) {
           <div className="post-card__media-fallback">{post.cropName.slice(0, 1)}</div>
         )}
         <span className="post-card__quality">{post.quality}</span>
-        {post.certificateUrl && <span className="post-card__cert">Certificate attached</span>}
+        {post.certificateUrl && <span className="post-card__cert">{t("explore.certificateAttached")}</span>}
       </div>
 
       <div className="post-card__body">
@@ -36,7 +38,7 @@ export default function PostCard({ post, onOpen }) {
 
         <div className="post-card__rating">
           <StarRating value={rating || 0} readOnly size={14} />
-          <span>{rating ? `${rating} (${post.farmerRating.count})` : "No ratings yet"}</span>
+          <span>{rating ? `${rating} (${post.farmerRating.count})` : t("explore.noRatings")}</span>
         </div>
       </div>
     </button>

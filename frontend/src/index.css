@@ -13,8 +13,8 @@
   --radius-md: 14px;
   --radius-lg: 22px;
   --shadow: 0 12px 30px -18px rgba(27, 42, 30, 0.35);
-  --font-display: "Fraunces", "Iowan Old Style", serif;
-  --font-body: "Work Sans", "Segoe UI", sans-serif;
+  --font-display: "Fraunces", "Noto Sans Devanagari", "Iowan Old Style", serif;
+  --font-body: "Work Sans", "Noto Sans Devanagari", "Segoe UI", sans-serif;
 }
 
 * {
@@ -192,6 +192,28 @@ main {
   display: flex;
   align-items: center;
   gap: 0.8rem;
+}
+
+.nav__lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  border-radius: 999px;
+  padding: 0.35em 0.8em;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.nav__lang-sep {
+  color: var(--line);
+}
+
+.nav__lang-active {
+  color: var(--primary);
 }
 
 .nav__user-chip {
@@ -521,6 +543,31 @@ main {
   padding: 0.7em 1.2em;
   min-width: 260px;
   background: var(--paper);
+}
+
+.explore__tabs {
+  display: inline-flex;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px;
+  margin-bottom: 1.6rem;
+}
+
+.explore__tabs button {
+  border: none;
+  background: transparent;
+  padding: 0.55em 1.3em;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.explore__tabs button.active {
+  background: var(--primary);
+  color: #fff;
 }
 
 .explore__filters {
@@ -910,6 +957,121 @@ main {
   .contact-page {
     grid-template-columns: 1fr;
   }
+}
+
+/* ---------- Price Check ---------- */
+.price-check {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0 3rem;
+}
+
+.price-check__card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: var(--shadow);
+}
+
+.price-check__card h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.price-check__leaf {
+  font-size: 1.3rem;
+}
+
+.price-check__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.4rem;
+}
+
+.price-check__form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.price-check__form select {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 0.75em 0.9em;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.price-check__form select:disabled {
+  color: var(--ink-soft);
+  cursor: not-allowed;
+}
+
+.price-check__submit {
+  width: 100%;
+  justify-content: center;
+  margin-top: 0.4rem;
+}
+
+.price-check__result {
+  margin-top: 1.6rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--line);
+}
+
+.price-check__result-label {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.2rem;
+}
+
+.price-check__result-price {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--soil);
+  margin-bottom: 0.3rem;
+}
+
+.price-check__result-price small {
+  font-size: 1rem;
+  font-family: var(--font-body);
+  color: var(--ink-soft);
+}
+
+.price-check__trend {
+  font-weight: 600;
+  font-size: 0.92rem;
+  margin-bottom: 0.4rem;
+}
+
+.price-check__trend--up {
+  color: var(--primary);
+}
+
+.price-check__trend--down {
+  color: #B3401F;
+}
+
+.price-check__range {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.price-check__disclaimer {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  margin-top: 0.8rem;
+  margin-bottom: 0;
 }
 
 /* ---------- Footer ---------- */
