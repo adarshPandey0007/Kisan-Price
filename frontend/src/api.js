@@ -26,6 +26,7 @@ export const api = {
   getPosts: () => request("/posts"),
   getPost: (id) => request(`/posts/${id}`),
   createPost: (formData, token) => request("/posts", { method: "POST", body: formData, token, isForm: true }),
+  deletePost: (id, token) => request(`/posts/${id}`, { method: "DELETE", token }),
 
   rateFarmer: (payload, token) => request("/ratings", { method: "POST", body: payload, token }),
   getFarmerRatings: (farmerId) => request(`/farmers/${farmerId}/ratings`),

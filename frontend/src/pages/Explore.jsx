@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { api } from "../api";
+import { useAuth } from "../context/AuthContext";
 import { useLanguage } from "../context/LanguageContext";
 import PostCard from "../components/PostCard";
 import PostModal from "../components/PostModal";
@@ -9,12 +10,14 @@ const FILTERS = ["All", "Premium", "Grade A", "Grade B", "Standard"];
 
 export default function Explore() {
   const { t } = useLanguage();
+  const { token } = useAuth();
   const [tab, setTab] = useState("feed");
   const [posts, setPosts] = useState([]);
   const [status, setStatus] = useState("loading");
   const [active, setActive] = useState(null);
   const [filter, setFilter] = useState("All");
   const [search, setSearch] = useState("");
+  const [deleteError, setDeleteError] = useState("");
 
   const TABS = [
     { id: "feed", label: t("explore.tabFeed") },
@@ -41,6 +44,19 @@ export default function Explore() {
       return matchesFilter && matchesSearch;
     });
   }, [posts, filter, search]);
+
+  async function handleDelete(post) {
+    const confirmed = window.confirm(`Delete your listing for "${post.cropName}"? This can't be undone.`);
+    if (!confirmed) return;
+    setDeleteError("");
+    try {
+      await api.deletePost(post.id, token);
+      setPosts((prev) => prev.filter((p) => p.id !== post.id));
+      setActive((current) => (current?.id === post.id ? null : current));
+    } catch (err) {
+      setDeleteError(err.message || "Could not delete listing. Try again.");
+    }
+  }
 
   return (
     <div className="explore">
@@ -81,13 +97,15 @@ export default function Explore() {
             <p className="explore__status">{t("explore.empty")}</p>
           )}
 
+          {deleteError && <p className="explore__status explore__status--error">{deleteError}</p>}
+
           <div className="explore__grid">
             {visible.map((post) => (
-              <PostCard key={post.id} post={post} onOpen={setActive} />
+              <PostCard key={post.id} post={post} onOpen={setActive} onDelete={handleDelete} />
             ))}
           </div>
 
-          {active && <PostModal post={active} onClose={() => setActive(null)} />}
+          {active && <PostModal post={active} onClose={() => setActive(null)} onDelete={handleDelete} />}
         </>
       )}
 

@@ -4,8 +4,9 @@ import { api, ASSET_BASE } from "../api";
 import { useAuth } from "../context/AuthContext";
 import StarRating from "./StarRating";
 
-export default function PostModal({ post, onClose }) {
+export default function PostModal({ post, onClose, onDelete }) {
   const { user, token } = useAuth();
+  const isOwner = user?.role === "farmer" && user?.id === post.farmerId;
   const [ratings, setRatings] = useState([]);
   const [average, setAverage] = useState(post.farmerRating?.average);
   const [count, setCount] = useState(post.farmerRating?.count || 0);
@@ -106,6 +107,20 @@ export default function PostModal({ post, onClose }) {
                 ₹{post.price} <small>per {post.unit}</small>
               </p>
               <p className="modal__description">{post.description}</p>
+
+              {isOwner && (
+                <div className="modal__manage">
+                  <h4>Manage your listing</h4>
+                  <p className="form__hint">This listing is visible to buyers. You can remove it at any time.</p>
+                  <button
+                    type="button"
+                    className="btn btn--danger btn--sm"
+                    onClick={() => onDelete?.(post)}
+                  >
+                    Delete this post
+                  </button>
+                </div>
+              )}
 
               <div className="modal__farmer">
                 <h4>{post.farmer?.name}</h4>

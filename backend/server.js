@@ -183,6 +183,28 @@ app.post(
   }
 );
 
+app.delete("/api/posts/:id", authMiddleware, (req, res) => {
+  const db = readDb();
+  const index = db.posts.findIndex((p) => p.id === req.params.id);
+  if (index === -1) return res.status(404).json({ error: "Listing not found" });
+
+  const post = db.posts[index];
+  if (post.farmerId !== req.userId) {
+    return res.status(403).json({ error: "You can only delete your own listings" });
+  }
+
+  // best-effort cleanup of the files that belonged to this listing
+  const filesToRemove = [post.certificateUrl, ...(post.imageUrls || [])].filter(Boolean);
+  filesToRemove.forEach((url) => {
+    const filePath = path.join(UPLOAD_DIR, path.basename(url));
+    fs.unlink(filePath, () => {});
+  });
+
+  db.posts.splice(index, 1);
+  writeDb(db);
+  res.json({ ok: true });
+});
+
 // ---------- ratings ----------
 app.post("/api/ratings", authMiddleware, (req, res) => {
   const { farmerId, stars, comment } = req.body;

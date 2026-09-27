@@ -115,6 +115,16 @@ main {
   font-size: 0.88rem;
 }
 
+.btn--danger {
+  background: #c94b4b;
+  color: #fff;
+}
+
+.btn--danger:hover {
+  background: #a83a3a;
+  transform: translateY(-1px);
+}
+
 .btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
@@ -598,6 +608,11 @@ main {
   padding: 2rem 0;
 }
 
+.explore__status--error {
+  color: #a83a3a;
+  padding: 0.6rem 0;
+}
+
 .explore__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -605,19 +620,50 @@ main {
 }
 
 .post-card {
-  text-align: left;
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
   overflow: hidden;
-  cursor: pointer;
-  padding: 0;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .post-card:hover {
   transform: translateY(-3px);
   box-shadow: var(--shadow);
+}
+
+.post-card__main {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+.post-card__owner-actions {
+  padding: 0 1.1rem 1rem;
+}
+
+.post-card__delete {
+  width: 100%;
+  padding: 0.5em 1em;
+  border-radius: 999px;
+  border: 1px solid #c94b4b;
+  background: transparent;
+  color: #c94b4b;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.post-card__delete:hover {
+  background: #c94b4b;
+  color: #fff;
 }
 
 .post-card__media {
@@ -838,6 +884,23 @@ main {
   font-size: 1.4rem;
   color: var(--soil);
   margin-bottom: 0.6rem;
+}
+
+.modal__manage {
+  margin: 1rem 0;
+  padding: 0.9rem 1rem;
+  background: rgba(201, 75, 75, 0.06);
+  border: 1px solid rgba(201, 75, 75, 0.3);
+  border-radius: var(--radius-sm, 10px);
+}
+
+.modal__manage h4 {
+  margin: 0 0 0.3rem;
+  color: #a83a3a;
+}
+
+.modal__manage .btn {
+  margin-top: 0.5rem;
 }
 
 .modal__farmer {
