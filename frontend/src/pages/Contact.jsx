@@ -38,7 +38,7 @@ export default function Contact() {
           </li>
           <li>
             <strong>{t("contact.phone")}</strong>
-            <span>+91 80000 12345</span>
+            <span>+91 8588921856</span>
           </li>
           <li>
             <strong>{t("contact.office")}</strong>
