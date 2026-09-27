@@ -38,6 +38,7 @@ export default function Contact() {
           </li>
           <li>
             <strong>{t("contact.phone")}</strong>
+            {/* phone number */}
             <span>+91 8588921856</span>
           </li>
           <li>
